@@ -30,7 +30,7 @@ export class Function {
     }
 }
 
-class Property {
+export class Property {
     public name:string;
     public value:string;
 

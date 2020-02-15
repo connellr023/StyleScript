@@ -3,7 +3,7 @@
  * @author Connell Reffo (Crisp32)
  */
 
-import { Function } from "./objects";
+import { Function, ISelector, Property } from "./objects";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -23,6 +23,16 @@ export class StyleScript {
     ];
 
     /**
+     * List of Read CSS Selectors
+     */
+    static selectors:Array<ISelector> = [];
+
+    /**
+     * List of StyleScript Variables
+     */
+    static variables:Array<Property> = [];
+
+    /**
      * StyleScript Main Compilation Function
      * @param filePath is the Path to the *.ss File to be Compiled
      */
@@ -37,44 +47,83 @@ export class StyleScript {
         // Parse Each Line into its own Array Index
         var lines:Array<string> = toCompile.split(";");
 
+        var selector:string = "";
+        var readingSelector:boolean = false;
+
         // Iterate through Each Line
         for (var l = 0; l < lines.length; l++) {
             const line:string = lines[l];
             var isFunc:boolean = false;
 
-            // Check for Functions
-            for (var f in this.functions) {
-                const func:Function = this.functions[f];
+            if (readingSelector) {
+                if (line.includes("}")) {
 
-                if (line.includes(keywordPrefix + func.name)) {
-                    const params:Array<string> = func.parseParams(line);
-                    isFunc = true;
-                }
-            }
+                    // Split Selectors into Name and Property
+                    const propStart = selector.indexOf("{");
+                    const props:Array<string> = selector.substr(propStart).split(";");
+                    const selName:string = selector.substr(0, propStart).replace("}", "");
 
-            // Get Selector and its Properties
-            if (!isFunc) {
-                if (line.includes("{")) {
-                    var selector:string = "";
+                    // Get Properties
+                    var properties:Array<Property> = [];
 
-                    for (var lineIndex in lines.slice(l)) {
-                        const currentLine = lines[lineIndex];
+                    for (var prop in props) {
+                        var property = props[prop].replace("{", "").split(":");
 
-                        if (currentLine.includes("}")) {
-                            const endBracket:number = currentLine.indexOf("}");
-                            selector += currentLine.substr(0, endBracket + 1);
+                        if (property[0] != "") {
 
-                            break;
+                            // Insert Variables
+                            for (var variable in this.variables) {
+                                if (property[1] == this.variables[variable].name) {
+                                   property[1] = this.variables[variable].value; 
+                                }
+                            }
+
+                            // Add to Properties Array
+                            properties.push(new Property(property[0], property[1]));
                         }
-
-                        l++;
-                        selector += currentLine;
                     }
 
-                    console.log(selector);
+                    this.selectors.push({
+                        selector: selName,
+                        properties: properties
+                    });
+
+                    // Reset
+                    selector = "";
+                    readingSelector = false;
+                    l--;
+                }
+
+                selector += `${line};`.replace("}", "");
+            }
+            else {
+
+                // Check for Functions
+                for (var f in this.functions) {
+                    const func:Function = this.functions[f];
+
+                    if (line.includes(keywordPrefix + func.name)) {
+                        const args:Array<string> = func.parseParams(line);
+                        isFunc = true;
+
+                        // Process Arguments
+                        if (func.name === "var") {
+                            this.variables.push(new Property(args[0], args[1]));
+                        }
+                    }
+                }
+
+                // Get Selector and its Properties
+                if (!isFunc) {
+                    if (line.includes("{")) {
+                        selector = `${line};`;
+                        readingSelector = true;
+                    }
                 }
             }
         }
+        
+        console.log(this.selectors[0].properties);
         return compiled;
     }
 }
