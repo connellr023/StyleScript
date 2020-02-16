@@ -6,11 +6,13 @@
 import { Function, ISelector, Property } from "./objects";
 import * as fs from "fs";
 import * as path from "path";
+import * as utils from "./utils";
 
 /**
  * Character to be Placed before Functions EX: %var(name, val);
  */
 export const keywordPrefix:string = "%";
+export const fileExtension:string = "sscr";
 
 export class StyleScript {
 
@@ -18,8 +20,8 @@ export class StyleScript {
      * List of Registered StyleScript Functions
      */
     static functions:Array<Function> = [
-        new Function("import"),
-        new Function("var")
+        new Function("print", (args) => console.log(args.join(" "))),
+        new Function("var", utils.defineVar)
     ];
 
     /**
@@ -34,15 +36,42 @@ export class StyleScript {
 
     /**
      * StyleScript Main Compilation Function
-     * @param filePath is the Path to the *.ss File to be Compiled
+     * @param filePath is the path to the *.ss file to be compiled
+     * @param vars is for values that are to be passed to the StyleScript compiler
      */
-    public static compile(filePath:string):string {
+    public static compile(filePath:string, vars?:object):string {
+        var compiled:string = "/* Generated with the StyleScript Compiler */\n";
+
+        // Validate File Extension
+        const extensionMatches:Array<string> = filePath.match(/\.[0-9a-z]+$/gi);
+        const extension:string = extensionMatches[extensionMatches.length - 1].toLowerCase();
+        
+        if (extension != `.${fileExtension}`) {
+            return `/* File Must have a .${fileExtension} Extension */`;
+        }
+
+        // Start Compilation Process
         var file:string = path.resolve(filePath);
-        var compiled:string;
+
+        // Register Passed Variables
+        if (vars != null) {
+            const varNames = Object.keys(vars);
+            const varValues = Object.values(vars);
+
+            for (var v = 0; v < varNames.length; v++) {
+                const name:string = varNames[v];
+                const value:string = varValues[v];
+
+                utils.defineVar([name, value]);
+            }
+        }
 
         // Remove Whitespace from File Content
         var toCompile:string = fs.readFileSync(file).toString();
-        toCompile = toCompile.replace(/[\n\r\t]/g, "").replace(/\s+/g, "");
+        toCompile = toCompile
+            .replace(/[\n\r\t]/g, "")
+            .replace(/\s+/g, "")
+            .replace(/\/\*(.*?)\*\//g, "");
 
         // Parse Each Line into its own Array Index
         var lines:Array<string> = toCompile.split(";");
@@ -63,6 +92,8 @@ export class StyleScript {
                     const props:Array<string> = selector.substr(propStart).split(";");
                     const selName:string = selector.substr(0, propStart).replace("}", "");
 
+                    compiled += `\n${selName} {\n`;
+
                     // Get Properties
                     var properties:Array<Property> = [];
 
@@ -73,10 +104,25 @@ export class StyleScript {
 
                             // Insert Variables
                             for (var variable in this.variables) {
-                                if (property[1] == this.variables[variable].name) {
-                                   property[1] = this.variables[variable].value; 
-                                }
+                                property[1] = property[1].replace(this.variables[variable].name, this.variables[variable].value);
                             }
+
+                            // Add Spaces Around Calculations
+                            if (property[1].includes("(")) {
+                                const start:number = property[1].indexOf("(");
+                                const end:number = property[1].indexOf(")");
+
+                                const inside:string = property[1].substr(start, end);
+
+                                property[1] = property[1].replace(inside, inside
+                                    .replace("-", " - ")
+                                    .replace("+", " + ")
+                                    .replace("*", " * ")
+                                    .replace("/", " / ")
+                                );
+                            }
+
+                            compiled += `\t${property[0]}: ${property[1]};\n`;
 
                             // Add to Properties Array
                             properties.push(new Property(property[0], property[1]));
@@ -87,6 +133,8 @@ export class StyleScript {
                         selector: selName,
                         properties: properties
                     });
+
+                    compiled += "}\n";
 
                     // Reset
                     selector = "";
@@ -103,13 +151,11 @@ export class StyleScript {
                     const func:Function = this.functions[f];
 
                     if (line.includes(keywordPrefix + func.name)) {
-                        const args:Array<string> = func.parseParams(line);
+                        const args:Array<string> = func.parseArgs(line);
                         isFunc = true;
 
                         // Process Arguments
-                        if (func.name === "var") {
-                            this.variables.push(new Property(args[0], args[1]));
-                        }
+                        func.callback(args);
                     }
                 }
 
@@ -123,9 +169,9 @@ export class StyleScript {
             }
         }
         
-        console.log(this.selectors[0].properties);
         return compiled;
     }
 }
 
-StyleScript.compile("./ss_files/file1.ss");
+// Export Modules for Node require();
+exports.StyleScript = StyleScript;

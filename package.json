@@ -1,8 +1,8 @@
 {
-  "name": "stylescript-compiler",
+  "name": "@stylescript/compiler",
   "version": "1.0.0",
-  "description": "A CSS superset designed to be directly integrated with a webserver backend.",
-  "main": "./compiler/main.ts",
+  "description": "A CSS superset designed to be directly integrated with a NodeJS webserver.",
+  "main": "./compiler/stylescript.ts",
   "dependencies": {
     "@types/node": "^13.7.1",
     "fs": "0.0.1-security",
@@ -14,9 +14,6 @@
     "typescript-require": "^0.2.10"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "ts-node ./compiler/main.ts"
-  },
   "keywords": [
     "StyleScript"
   ],

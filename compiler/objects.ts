@@ -3,20 +3,20 @@
  * @author Connell Reffo (Crisp32)
  */
 
-import { keywordPrefix } from "./main";
-
 export class Function {
     public name:string;
+    public callback:(args:Array<string>) => void;
 
     /**
      * Function Class Constructor
      * @param funcName Name of StyleScript Function
      */
-    constructor(funcName:string) {
+    constructor(funcName:string, callback:(args:Array<string>) => void) {
         this.name = funcName;
+        this.callback = callback;
     }
 
-    public parseParams(line:string):Array<string> {
+    public parseArgs(line:string):Array<string> {
         const openBracket:number = line.indexOf("(");
         const closeBracket:number = line.indexOf(")");
         
