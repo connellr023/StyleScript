@@ -171,6 +171,13 @@ export class StyleScript {
         
         return compiled;
     }
+
+    public static middleware(req:any, res:any, next:(() => void)):void {
+        console.log(req.body);
+
+        // Call Next Middleware Function
+        next();
+    }
 }
 
 // Export Modules for Node require();

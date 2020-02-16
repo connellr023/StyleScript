@@ -1,5 +1,5 @@
 {
-  "name": "@stylescript/compiler",
+  "name": "stylescript",
   "version": "1.0.0",
   "description": "A CSS superset designed to be directly integrated with a NodeJS webserver.",
   "main": "./compiler/stylescript.ts",
