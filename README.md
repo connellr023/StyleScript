@@ -3,9 +3,9 @@
 
 <div align="left">
   <img src="https://img.shields.io/badge/node-%3E%3D%206.0.0-brightgreen">
-  <img src="https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey">
   <img src="https://img.shields.io/badge/license-ISC-blue">
   <img src="https://img.shields.io/badge/language-TypeScript-yellow">
+  <img src="https://img.shields.io/badge/developer-Connell Reffo (Crisp32)-red">
  </div>
 
 # Info
