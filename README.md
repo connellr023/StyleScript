@@ -1,7 +1,6 @@
 <div align="center">
-  <img src="/icons/stylescript-logo-full.png" width="180">
+  <img src="/icons/stylescript-logo-full.png" width="210">
 </div>
-# Style Script
 <br>
 
 <div align="left">
@@ -26,4 +25,29 @@ StyleScript is a CSS superset designed to be directly integrated with a TypeScri
   "tsc": "^1.20150623.0",
   "typescript": "^3.7.5"
 }
+```
+
+# StyleScript Code Examples
+```scss
+/* Include Multiple Files (Automatically Assumes *.sscr File Extension) */
+%include(./styles1, ./styles2);
+
+/* Variable Declaration */
+%var(bgColour, #131313);
+%var(txtColour, white);
+
+/* Variable Re-Assignment */
+%var(txtColour, lightgrey);
+
+/* Style Script Block Definition */
+%testBlock {
+  text-align: center;
+  color: %txtColour; /* Variable Insertion */
+}
+
+div {
+  %testBlock; /* Insert Code Block */
+  margin-bottom: 5px;
+}
+
 ```
