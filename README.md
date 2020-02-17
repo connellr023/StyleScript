@@ -35,7 +35,7 @@ StyleScript is a CSS superset designed to be directly integrated with a TypeScri
 # Installation
  - Clone StyleScript into a directory (somewhere easy to access)
  - Rename folder to **stylescript**
- - Inside of your Node.js project, run **npm install path_to_stylescript_folder**
+ - Inside of your Node.js project, run **npm install <path_to_stylescript_folder>**
  - You are now ready to use StyleScript in your project
 
 # StyleScript Code Examples
