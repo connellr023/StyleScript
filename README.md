@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/icons/stylescript-logo-full.png" width="180">
+  # <img src="/icons/stylescript-logo-full.png" width="180">
 </div>
 <br>
 
