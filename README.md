@@ -8,6 +8,13 @@
   <img src="https://img.shields.io/badge/developer-Connell Reffo (Crisp32)-red">
  </div>
 
+# Table of Contents
+ - [Info](info)
+ - [Installation](installation)
+ - [Dependancies](dependancies)
+ - [Examples](stylescript-code-examples)
+ - [Integration](integration-with-ts-node)
+
 # Info
 StyleScript is a CSS superset designed to be directly integrated with a TypeScript Node.js webserver.
 
@@ -63,7 +70,7 @@ const port = 3000;
 app.use(parser.urlencoded({ extended:true }));
 
 // StyleScript Auto Compile Middleware
-app.use(async (req, res, next) => {
+app.use(async (req, res, next):void => {
     
     // Set __dirname to the Root Directory of the Project
     ss.autoCompile(req, res, next, __dirname, {
@@ -72,7 +79,7 @@ app.use(async (req, res, next) => {
 });
 
 // Another way of Serving StyleScript
-app.get("/someStyles", (req, res) => {
+app.get("/someStyles", async (req, res):void => {
   res.setHeader("content-type", "text/css");
   res.send(ss.compile("./styles.sscr"), {
     someVar: "red",
@@ -81,11 +88,17 @@ app.get("/someStyles", (req, res) => {
 });
 
 // Simple Page that will Reference the example.sscr Style Sheet
-app.get("/", (req, res) => res.send(`
+app.get("/", (req, res):void => res.send(`
   <link rel="stylesheet" type="text/css" href="example.sscr">
   <div>Hello World!</div>
 `));
 
 // Start Server
-app.listen(port, () => console.log(`SSCR Example Listening on Port ${port}!`));
+app.listen(port, ():void => console.log(`SSCR Example Listening on Port ${port}!`));
 ```
+
+# Installation
+ - Clone StyleScript into a directory (somewhere easy to access)
+ - Rename folder to __*stylescript
+ - Inside of your Node.js project, run __npm install path_to_stylescript_folder
+ - You are now ready to use StyleScript in your project
