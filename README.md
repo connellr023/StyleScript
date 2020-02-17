@@ -32,6 +32,12 @@ StyleScript is a CSS superset designed to be directly integrated with a TypeScri
 }
 ```
 
+# Installation
+ - Clone StyleScript into a directory (somewhere easy to access)
+ - Rename folder to __*stylescript
+ - Inside of your Node.js project, run __npm install path_to_stylescript_folder
+ - You are now ready to use StyleScript in your project
+
 # StyleScript Code Examples
 ```scss
 /* Include Multiple Files (Automatically Assumes *.sscr File Extension) */
@@ -96,9 +102,3 @@ app.get("/", (req, res):void => res.send(`
 // Start Server
 app.listen(port, ():void => console.log(`SSCR Example Listening on Port ${port}!`));
 ```
-
-# Installation
- - Clone StyleScript into a directory (somewhere easy to access)
- - Rename folder to __*stylescript
- - Inside of your Node.js project, run __npm install path_to_stylescript_folder
- - You are now ready to use StyleScript in your project
