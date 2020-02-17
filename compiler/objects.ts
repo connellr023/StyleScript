@@ -5,13 +5,14 @@
 
 export class Function {
     public name:string;
-    public callback:(args:Array<string>) => void;
+    public callback:((args:Array<string>) => void);
 
     /**
      * Function Class Constructor
-     * @param funcName Name of StyleScript Function
+     * @param funcName is the Name of the StyleScript Function
+     * @param priority is a Function to be checked for and Executed as First Priority
      */
-    constructor(funcName:string, callback:(args:Array<string>) => void) {
+    constructor(funcName:string, callback:((args:Array<string>) => void)) {
         this.name = funcName;
         this.callback = callback;
     }
@@ -51,5 +52,6 @@ export class Property {
  */
 export interface ISelector {
     selector:string,
-    properties:Array<Property>
+    properties:Array<Property>,
+    isBlock:boolean
 }
