@@ -1,11 +1,25 @@
 <h1><img src="/icons/stylescript-logo-full.png" width="180"></h1>
 
-<div align="center">
+<div align="left">
   <img src="https://img.shields.io/badge/node-%3E%3D%206.0.0-brightgreen">
   <img src="https://img.shields.io/badge/platform-linux--64%20%7C%20win--32%20%7C%20osx--64%20%7C%20win--64-lightgrey">
-  <img src="https://img.shields.io/badge/License-ISC-blue">
-  <img src="https://img.shields.io/badge/Language-TypeScript-yellow">
+  <img src="https://img.shields.io/badge/license-ISC-blue">
+  <img src="https://img.shields.io/badge/language-TypeScript-yellow">
  </div>
 
 <h2>Info</h2>
 StyleScript is a CSS superset designed to be directly integrated with a TypeScript Node.js webserver.
+
+<h2>Dependancies</h2>
+```
+"dependencies": {
+  "@types/node": "^13.7.1",
+  "body-parser": "^1.19.0",
+  "fs": "0.0.1-security",
+  "nodemon": "^2.0.2",
+  "ts-node": "^8.6.2",
+  "ts-node-dev": "^1.0.0-pre.44",
+  "tsc": "^1.20150623.0",
+  "typescript": "^3.7.5"
+}
+```
