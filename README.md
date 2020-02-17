@@ -1,6 +1,4 @@
-<div align="center">
-  <h1><img src="/icons/stylescript-logo-full.png" width="210"></h1>
-</div>
+<h1><img src="/icons/stylescript-logo-full.png" width="230"></h1>
 <br>
 
 <div align="left">
