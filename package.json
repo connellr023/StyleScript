@@ -1,7 +1,7 @@
 {
   "name": "stylescript",
   "version": "1.0.0",
-  "description": "A CSS superset designed to be directly integrated with a NodeJS webserver.",
+  "description": "A CSS superset designed to be directly integrated with a Node.JS webserver.",
   "main": "./compiler/stylescript.ts",
   "icon": "./icons/stylescript-logo-square.png",
   "dependencies": {

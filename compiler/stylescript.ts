@@ -125,7 +125,7 @@ export class StyleScript {
 
                                 // Insert Variables
                                 for (var variable in this.variables) {
-                                    property[1] = property[1].replace(this.variables[variable].name, this.variables[variable].value);
+                                    property[1] = property[1].replace(`${keywordPrefix}${this.variables[variable].name}`, this.variables[variable].value);
                                 }
     
                                 // Add Spaces Around Calculations
