@@ -1,6 +1,7 @@
 <div align="center">
   <img src="/icons/stylescript-logo-full.png" width="180">
 </div>
+<br>
 
 <div align="left">
   <img src="https://img.shields.io/badge/node-%3E%3D%206.0.0-brightgreen">
