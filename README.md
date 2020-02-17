@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/icons/stylescript-logo-full.png" width="210">
+  <h1><img src="/icons/stylescript-logo-full.png" width="210"></h1>
 </div>
 <br>
 
@@ -50,4 +50,33 @@ div {
   margin-bottom: 5px;
 }
 
+```
+
+# Integration width TS-Node
+```typescript
+const express = require("express");
+const parser = require("body-parser");
+const app = express();
+const port = 3000;
+
+const ss = require("./compiler/stylescript").StyleScript;
+
+// Use Body Parser Middleware
+app.use(parser.urlencoded({ extended:true }));
+
+// StyleScript Auto Compile Middleware
+app.use(async (req, res, next) => {
+    
+    //                         ↓ Root of Project ↓
+    ss.autoCompile(req, res, next, __dirname, {
+        highlightColour: "blue"
+    });
+});
+
+app.get('/', (req, res) => res.send(`
+  <link rel="stylesheet" type="text/css" href="test.sscr">
+  <div>Hello World!</div>
+`));
+
+app.listen(port, () => console.log(`SSCR Example Listening on Port ${port}!`));
 ```
