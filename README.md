@@ -1,4 +1,4 @@
-<h1><img src="/icons/stylescript-logo-full.png" width="180"></h1>
+![StyleScript Logo](/icons/stylescript-logo-full.png | width=180)
 
 <div align="left">
   <img src="https://img.shields.io/badge/node-%3E%3D%206.0.0-brightgreen">
@@ -7,11 +7,11 @@
   <img src="https://img.shields.io/badge/language-TypeScript-yellow">
  </div>
 
-<h2>Info</h2>
+# Info
 StyleScript is a CSS superset designed to be directly integrated with a TypeScript Node.js webserver.
 
-<h2>Dependancies</h2>
-```
+# Dependancies
+```json
 "dependencies": {
   "@types/node": "^13.7.1",
   "body-parser": "^1.19.0",
