@@ -54,12 +54,12 @@ div {
 
 # Integration width TS-Node
 ```typescript
+import { StyleScript as ss } from "stylescript"; // Can also use require("stylescript").StyleScript;
+
 const express = require("express");
 const parser = require("body-parser");
 const app = express();
 const port = 3000;
-
-const ss = require("./compiler/stylescript").StyleScript;
 
 // Use Body Parser Middleware
 app.use(parser.urlencoded({ extended:true }));
@@ -67,16 +67,18 @@ app.use(parser.urlencoded({ extended:true }));
 // StyleScript Auto Compile Middleware
 app.use(async (req, res, next) => {
     
-    //                         ↓ Root of Project ↓
+    // Set __dirname to the Root Directory of the Project
     ss.autoCompile(req, res, next, __dirname, {
-        highlightColour: "blue"
+        highlightColour: "blue" // Can be used in SSCR { color: %highlightColour; }
     });
 });
 
+// Simple Page that will Reference the example.sscr Style Sheet
 app.get('/', (req, res) => res.send(`
-  <link rel="stylesheet" type="text/css" href="test.sscr">
+  <link rel="stylesheet" type="text/css" href="example.sscr">
   <div>Hello World!</div>
 `));
 
+// Start Server
 app.listen(port, () => console.log(`SSCR Example Listening on Port ${port}!`));
 ```
