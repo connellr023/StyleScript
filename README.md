@@ -1,7 +1,7 @@
 <h1>StyleScript</h1>
 
 <br>
-__StyleScript Logo__
+<strong>StyleScript Logo</strong><br>
 <img src="/icons/stylescript-logo-full.png" width="150">
 <br>
 
