@@ -52,7 +52,7 @@ div {
 
 ```
 
-# Integration width TS-Node
+# Integration With TS-Node
 ```typescript
 import { StyleScript as ss } from "stylescript"; // Can also use require("stylescript").StyleScript;
 
@@ -69,12 +69,21 @@ app.use(async (req, res, next) => {
     
     // Set __dirname to the Root Directory of the Project
     ss.autoCompile(req, res, next, __dirname, {
-        highlightColour: "blue" // Can be used in SSCR { color: %highlightColour; }
+        highlightColour: "blue" // Can be used in SSCR { background-color: %highlightColour; }
     });
 });
 
+// Another way of Serving StyleScript
+app.get("/someStyles", (req, res) => {
+  res.setHeader("content-type", "text/css");
+  res.send(ss.compile("./styles.sscr"), {
+    someVar: "red",
+    divWidth: "20px"
+  });
+});
+
 // Simple Page that will Reference the example.sscr Style Sheet
-app.get('/', (req, res) => res.send(`
+app.get("/", (req, res) => res.send(`
   <link rel="stylesheet" type="text/css" href="example.sscr">
   <div>Hello World!</div>
 `));
