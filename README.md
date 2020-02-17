@@ -1,4 +1,4 @@
-# StyleScript
-StyleScript is a CSS superset designed to be directly integrated with a Node.js webserver.
+<h1>StyleScript</h1>
+<div>StyleScript is a CSS superset designed to be directly integrated with a Node.js webserver.</div>
 
-![StyleScript Logo](/icons/stylescript-logo-full.png =250x)
+<img src="/icons/stylescript-logo-full" width="250">
