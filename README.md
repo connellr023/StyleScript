@@ -1,2 +1,4 @@
-# StyleScript Compiler
-A CSS superset designed to be directly integrated with a webserver backend.
+# StyleScript
+StyleScript is a CSS superset designed to be directly integrated with a Node.js webserver.
+
+![StyleScript Logo](/images/stylescript-logo-full.png)
