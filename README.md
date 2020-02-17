@@ -9,11 +9,11 @@
  </div>
 
 # Table of Contents
- - [Info](info)
- - [Installation](installation)
- - [Dependancies](dependancies)
- - [Examples](stylescript-code-examples)
- - [Integration](integration-with-ts-node)
+ - [Info](#info)
+ - [Installation](#installation)
+ - [Dependancies](#dependancies)
+ - [Examples](#stylescript-code-examples)
+ - [Integration](#integration-with-ts-node)
 
 # Info
 StyleScript is a CSS superset designed to be directly integrated with a TypeScript Node.js webserver.
