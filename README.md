@@ -1,7 +1,7 @@
 <h1>StyleScript</h1>
 
 <br>
-<img src="/icons/stylescript-logo-full.png" width="150" style="margin-left: -10px;">
+<center><img src="/icons/stylescript-logo-full.png" width="150"></center>
 <br>
 
 <div>StyleScript is a CSS superset designed to be directly integrated with a Node.js webserver.</div>
