@@ -1,5 +1,5 @@
 {
-  "name": "stylescript",
+  "name": "@crisp32/stylescript",
   "version": "1.0.0",
   "description": "A CSS superset designed to be directly integrated with a Node.JS webserver.",
   "main": "./compiler/stylescript.ts",
@@ -16,7 +16,9 @@
   },
   "devDependencies": {},
   "keywords": [
-    "StyleScript"
+    "StyleScript",
+    "CSS Superset",
+    "Middleware"
   ],
   "author": "Connell Reffo",
   "license": "ISC"
