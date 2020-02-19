@@ -1,6 +1,6 @@
 {
   "name": "@crisp32/stylescript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CSS superset designed to be directly integrated with a Node.JS webserver.",
   "main": "./compiler/stylescript.ts",
   "icon": "./icons/stylescript-logo-square.png",
