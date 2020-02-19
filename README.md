@@ -1,4 +1,4 @@
-<h1><img src="/icons/stylescript-logo-full.png" width="230"></h1>
+<h1><img src="https://github.com/Crisp32/StyleScript/blob/master/icons/stylescript-logo-full.png?raw=true" width="230"></h1>
 <br>
 
 <div align="left">
