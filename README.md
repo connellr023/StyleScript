@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/node-%3E%3D%206.0.0-brightgreen">
   <img src="https://img.shields.io/badge/license-ISC-blue">
   <img src="https://img.shields.io/badge/language-TypeScript-yellow">
-  <img src="https://img.shields.io/badge/developer-Connell Reffo (Crisp32)-red">
+  <img src="https://img.shields.io/badge/developer-Connell Reffo-red">
  </div>
 
 # Table of Contents
