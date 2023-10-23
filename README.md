@@ -1,5 +1,4 @@
 <h1><img src="https://github.com/Crisp32/StyleScript/blob/master/icons/stylescript-logo-full.png?raw=true" width="230"></h1>
-<br>
 
 <div align="left">
   <img src="https://img.shields.io/badge/node-%3E%3D%206.0.0-brightgreen">
